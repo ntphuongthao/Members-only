@@ -4,8 +4,12 @@
       <div class="col-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
           <div class="card-header font-italic">
-            <% if post.user %>
-              by <%= link_to post.user.name, users_path(post.user) %>
+            <% if logged_in? %>
+              <% if post.user %>
+                by <%= link_to post.user.name, users_path(post.user) %>
+              <% end %>
+            <% else %>
+              by <strong>Anonymous</strong>
             <% end %>
           </div>
           <div class="card-body">

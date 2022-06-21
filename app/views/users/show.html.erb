@@ -1,9 +1,20 @@
-<h1 class="text-center mt-4"><%= @user.name %>'s profile</h1>
-
-<% if @user.posts.empty? %>
-    <div class="container" style="text-align:center">
-        There are no posts available
+<div class="container" style="display: flex; align-items: center; justify-content: center;">
+    <div class="card" style="width: 18rem; background-color: pink">
+        <div class="card-body">
+            <h5 class="card-title"><%= @user.name %>'s profile</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><strong>Email address: </strong><%= @user.email %></h6>
+            <% if logged_in? %>
+                <% if @user.posts.empty? %>
+                    <div class="container" style="text-align:center">
+                        There are no posts available
+                    </div>
+                <% else %>
+                    <%= render 'posts/post', posts: @user.posts %>
+                <% end %>
+            <% end %>
+        </div>
     </div>
-<% else %>
-    <%= render 'posts/post', posts: @user.posts %>
-<% end %>
+</div>
+
+
+
