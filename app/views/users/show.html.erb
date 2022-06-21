@@ -1,0 +1,9 @@
+<h1 class="text-center mt-4"><%= @user.name %>'s profile</h1>
+
+<% if @user.posts.empty? %>
+    <div class="container" style="text-align:center">
+        There are no posts available
+    </div>
+<% else %>
+    <%= render 'posts/post', posts: @user.posts %>
+<% end %>

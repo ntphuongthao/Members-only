@@ -1,0 +1,29 @@
+<h2 class="text-center mt-4"><%= @post.title %></h2>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          by <%= @post.user.name if @post.user %>
+        </div>
+        
+        <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@post.description) %></div>
+          <% if logged_in? && (@post.user == current_user || current_user.admin?) %>
+            <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-info" %>
+            <%= link_to "Delete", posts_path(@post), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(@post.created_at) %> ago, 
+          edited <%= time_ago_in_words(@post.updated_at) %> ago</small>
+          <div class="mb-3">
+            <%= link_to '[ See all posts here ]', posts_path, class: "text-info" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

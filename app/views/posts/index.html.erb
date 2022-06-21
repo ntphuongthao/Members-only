@@ -1,0 +1,7 @@
+<h1 class="text-center mt-4">All posts</h1>
+
+<% if @posts.empty? %>
+    <div class="text-center mt-4"><i>There are no posts available!</i></div>
+<% else %>
+    <%= render "post", posts: @posts %>
+<% end %>
